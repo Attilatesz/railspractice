@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Huli</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Huli</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html.erb">Home</a></li>
+      <li><a href="projects.html.erb">Projects</a></li>
+      <li><a href="teams.html.erb">Teams</a></li>
+      <li><a href="/admins/sign_in">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>The Projects</h2>          
+  <table class="table table-bordered">
+      <tr>
+        <th>Avatar</th>
+        <th>Project name</th>
+        <th>Description</th>
+      </tr>
+    <% @projects.each do |project| %>
+        <tr>
+          <td><%= image_tag project.image.url %></td>
+          <td><%= project.title %></td>
+          <td><%= project.description %></td>
+        </tr>
+      <% end %>
+  </table>
+</div>
+</body>
+</html>

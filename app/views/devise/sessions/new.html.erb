@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Huli</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="formwrapper">
+<center>
+<h1>Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="form-inputs">
+  <%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-controll"%>
+</div>
+
+<div class="form-group">
+  <%= f.label :password %><br />
+  <%= f.password_field :password, autocomplete: "current-password" %>
+</div>
+
+<% if devise_mapping.rememberable? -%>
+  <div class="checkbox">
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me %>
+  </div>
+<% end -%>
+
+  <div class="form-actions">
+  <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</center>
+</div>
+</body>
+</html>
+
