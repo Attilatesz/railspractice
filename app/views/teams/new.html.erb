@@ -31,6 +31,10 @@
                     <%= p.label "Team Apprentices" %></br>
                     <%= p.collection_select :apprentice_ids, Apprentice.all, :id, :name, {}, {multiple: true} %>
                 </div>
+                <div class="form-inputs">
+                    <%= p.label "Team Projects" %>
+                    <%= p.collection_select :project_ids, Project.all, :id, :title, {}, {multiple: true} %>
+                </div>
                 <div class="form-actions">
                     <%= p.submit "New Team" %>
                 </div>

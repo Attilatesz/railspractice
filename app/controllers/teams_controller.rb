@@ -21,6 +21,6 @@ class TeamsController < ApplicationController
     end
     private
     def team_params
-        params.require(:team).permit( :image, :name, :apprentice_ids => [])
+        params.require(:team).permit( :image, :name, :apprentice_ids => [], :project_ids => [])
     end
 end
