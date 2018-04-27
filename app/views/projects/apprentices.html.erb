@@ -24,21 +24,21 @@
 </nav>
 
 <div class="container">
-  <h2>The Teams</h2>          
+  <h2>Apprentices</h2>          
   <table class="table table-bordered">
       <tr>
-        <th>Avatar</th>
-        <th>Team Names</th>
-        <th>Apprentices</th>
+        <th>Name</th>
+        <th>Github</th>
+        <th>Teams</th>
       </tr>
-    <% @teams.each do |team| %>
+    <% @apprentices.each do |apprentice| %>
         <tr>
-          <td><%= image_tag team.image.url%></td>
-          <td><%= team.name %></td>
+          <td><%= apprentice.name %></td>
+          <td><%= apprentice.github %></td>
           <td>
-          <% team.apprentices.each_with_index do |a, index| %>
+          <% apprentice.teams.each_with_index do |a, index| %>
             <%= a.name %> 
-            <%= ", " unless team.apprentices.size==index+1 %> 
+            <%= ", " unless apprentice.teams.size==index+1 %> 
               <% end %>
           </td>
         </tr>

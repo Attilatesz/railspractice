@@ -17,6 +17,7 @@
       <li><a href="index.html.erb">Home</a></li>
       <li><a href="projects.html.erb">Projects</a></li>
       <li><a href="teams.html.erb">Teams</a></li>
+      <li><a href="apprentices.html.erb">Apprentices</a></li>
       <li><a href="/admins/sign_in">Login</a></li>
     </ul>
   </div>
@@ -42,11 +43,36 @@
   <h2>The Teams</h2>          
   <table class="table table-bordered">
       <tr>
+        <th>Avatar</th>
         <th>Team Names</th>
+        <th>Apprentices</th>
       </tr>
     <% @teams.each do |team| %>
         <tr>
+          <td><%= image_tag team.image.url%></td>
           <td><%= team.name %></td>
+          <td>
+          <% team.apprentices.each_with_index do |a, index| %>
+            <%= a.name %> 
+            <%= ", " unless team.apprentices.size==index+1 %> 
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+  </table>
+</div>
+
+<div class="container">
+  <h2>The Apprentices</h2>          
+  <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <th>GitHub Link</th>
+      </tr>
+    <% @apprentices.each do |apprentice| %>
+        <tr>
+          <td><%= apprentice.name%></td>
+          <td><%= apprentice.github %></td>
         </tr>
       <% end %>
   </table>

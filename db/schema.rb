@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426141555) do
+ActiveRecord::Schema.define(version: 20180427091620) do
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -29,7 +29,21 @@ ActiveRecord::Schema.define(version: 20180426141555) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "projects", force: :cascade do |t|
+  create_table "apprentices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "github"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "apprentices_teams", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "team_id", null: false
+    t.bigint "apprentice_id", null: false
+    t.index ["apprentice_id", "team_id"], name: "index_apprentices_teams_on_apprentice_id_and_team_id"
+    t.index ["team_id", "apprentice_id"], name: "index_apprentices_teams_on_team_id_and_apprentice_id"
+  end
+
+  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
@@ -38,22 +52,12 @@ ActiveRecord::Schema.define(version: 20180426141555) do
     t.string "image_name"
   end
 
-  create_table "teams", force: :cascade do |t|
+  create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.string "apprentice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email", null: false
-    t.string "encrypted_password", limit: 128, null: false
-    t.string "confirmation_token", limit: 128
-    t.string "remember_token", limit: 128, null: false
-    t.index ["email"], name: "index_users_on_email"
-    t.index ["remember_token"], name: "index_users_on_remember_token"
+    t.string "image_uid"
+    t.string "image_name"
   end
 
 end

@@ -2,15 +2,13 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @teams = Team.all
+    @apprentices = Apprentice.all
   end
   def show
     @project = Project.find(params[:id])
   end
   def teams
     @teams = Team.all
-  end
-  def admin
-
   end
   def new
     @project = Project.new
@@ -22,6 +20,9 @@ class ProjectsController < ApplicationController
   end
   def projects
     @projects = Project.all
+  end
+  def apprentices
+    @apprentices = Apprentice.all
   end
   def edit
     @project = Project.find(params[:id])

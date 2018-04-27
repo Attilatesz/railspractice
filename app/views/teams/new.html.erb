@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,22 +20,21 @@
 </nav>
     <div class="formwrapper">
         <center>
-            <h1>New Project</h1>
-                <%= form_for @project do |p| %>
-                    <%= p.file_field :image, required: true %>
+            <h1>New Team</h1>
+                <%= form_for @team do |p| %>
+                    <%= p.file_field :image, required: true%>
                 <div class="form-inputs">
-                    <%= p.label :title%><br />
-                    <%= p.text_field :title, autofocus: true, required: true, class:"form-controll"%>
+                    <%= p.label :name %><br />
+                    <%= p.text_field :name, autofocus: true, required: true, class:"form-controll"%>
                 </div>
-                <div class="form-group">
-                    <%= p.label :description %><br />
-                    <%= p.text_area :description, required: true %>
+                <div class="form-inputs">
+                    <%= p.label "Team Apprentices" %></br>
+                    <%= p.collection_select :apprentice_ids, Apprentice.all, :id, :name, {}, {multiple: true} %>
                 </div>
                 <div class="form-actions">
-                    <%= p.submit "New Project" %>
+                    <%= p.submit "New Team" %>
                 </div>
-                <% end %>
-            </div>
+            <% end %>
         </center>
     </div>
 </body>
